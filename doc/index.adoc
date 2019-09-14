@@ -1,0 +1,16 @@
+= User package
+:toc: left
+:toclevels: 4
+:author: Ernst Vorsteveld
+:email: ernst.vorsteveld@gmail.com
+:revnumber: 0.1
+:revdate: 14/09/2019
+:revremark: Development
+:version-label!:
+:sectnums:
+
+== User
+
+* User storage;
+* Crud opertions on users;
+* Password management;
