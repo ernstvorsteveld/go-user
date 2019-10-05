@@ -11,9 +11,9 @@ type EmailType string
 type LoginCodeType int
 
 type NameType struct {
-  first string
-  middle string
-  last string
+  First string
+  Middle string
+  Last string
 }
 
 const (
@@ -32,9 +32,9 @@ type LastLoginType struct {
 }
 
 type UserType struct {
-  id IdType
-  name NameType
-  email EmailType
+  Id uuid.UUID
+  Name NameType
+  Email EmailType
   logins []LoginType
   created time.Time
   lastLogin LastLoginType
@@ -44,5 +44,5 @@ type UserType struct {
 type IdType uuid.UUID
 
 type UserIdentity struct {
-  user UserType
+  User UserType
 }
