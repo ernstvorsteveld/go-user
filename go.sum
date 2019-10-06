@@ -1,5 +1,5 @@
-github.com/ernstvorsteveld/go-password v0.0.0-20190827102650-fbf7b2b6bc53 h1:9GOg1lHoip6brRyWHHUgxjq2PmgRdsBW7LiXdxZZ2eM=
-github.com/ernstvorsteveld/go-password v0.0.0-20190827102650-fbf7b2b6bc53/go.mod h1:Tasa6s/zuw6yv/M8rQ1YwPp55mcJwW+H3fKhKcOP8YA=
+github.com/ernstvorsteveld/go-password v0.0.0-20190827102954-cbf56bc8a249 h1:F7UBtk/Pj9UUuskzQQaW10hy7bFxMwNfuiVxg5e7E5U=
+github.com/ernstvorsteveld/go-password v0.0.0-20190827102954-cbf56bc8a249/go.mod h1:Tasa6s/zuw6yv/M8rQ1YwPp55mcJwW+H3fKhKcOP8YA=
 github.com/google/uuid v1.1.1 h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY=
 github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
