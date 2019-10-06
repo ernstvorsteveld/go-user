@@ -5,16 +5,16 @@ import (
 )
 
 type User interface {
-	GetUsername() UsernameType
-	SetUsername(username UsernameType)
-	GetEmail() EmailType
-	SetEmail(email EmailType)
+	GetUsername() string
+	SetUsername(username string)
+	GetEmail() string
+	SetEmail(email string)
 
 	SetUserId() IdType
 	GetUserId() IdType
 }
 
-func NewUser(username UsernameType) *UserIdentity {
+func NewUser(username string) *UserIdentity {
 	pUser := &UserIdentity{
 		user: UserType{
 			username: username,
@@ -23,19 +23,19 @@ func NewUser(username UsernameType) *UserIdentity {
 	return pUser
 }
 
-func (u *UserIdentity) GetUsername() UsernameType {
+func (u *UserIdentity) GetUsername() string {
 	return u.user.username
 }
 
-func (u *UserIdentity) SetUsername(username UsernameType) {
+func (u *UserIdentity) SetUsername(username string) {
 	u.user.username = username
 }
 
-func (u *UserIdentity) GetEmail() EmailType {
+func (u *UserIdentity) GetEmail() string {
 	return u.user.email
 }
 
-func (u *UserIdentity) SetEmail(email EmailType) {
+func (u *UserIdentity) SetEmail(email string) {
 	u.user.email = email
 }
 

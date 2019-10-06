@@ -6,13 +6,10 @@ import (
 	"time"
 )
 
-type EmailType string
-type LoginCodeType int
-type UsernameType string
 type IdType uuid.UUID
 
 const (
-	UserName LoginCodeType = iota
+	UserName int = iota
 	Email
 )
 
@@ -23,19 +20,19 @@ type NameType struct {
 }
 
 type LoginType struct {
-	loginType LoginCodeType
+	loginType int
 	value     string
 }
 
 type LastLoginType struct {
 	when time.Time
-	what LoginCodeType
+	what int
 }
 
 type UserType struct {
-	username  UsernameType
+	username  string
 	name      NameType
-	email     EmailType
+	email     string
 	logins    []LoginType
 	created   time.Time
 	lastLogin LastLoginType

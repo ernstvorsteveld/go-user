@@ -5,7 +5,7 @@ import (
 )
 
 func getUser() *UserIdentity {
-	pUser := NewUser(UsernameType("john.doe"))
+	pUser := NewUser("john.doe")
 	pUser.SetEmail("john.doe@tester.com")
 	return pUser
 }
@@ -13,7 +13,7 @@ func getUser() *UserIdentity {
 func Test_should_get_username_from_user(t *testing.T) {
 	pUser := getUser()
 
-	var expected UsernameType = "john.doe"
+	expected := "john.doe"
 	username := pUser.GetUsername()
 	if expected != username {
 		t.Errorf("The Username returned is %s, while expected 'john.doe'.", username)
@@ -27,7 +27,7 @@ func Test_should_get_username_from_user(t *testing.T) {
 
 func Test_should_get_email_from_user(t *testing.T) {
 	pUser := getUser()
-	var expected EmailType = "john.doe@tester.com"
+	var expected string = "john.doe@tester.com"
 	email := pUser.GetEmail()
 	if expected != email {
 		t.Errorf("The email address returned is %s, while expected 'john.doe@tester.com'", email)

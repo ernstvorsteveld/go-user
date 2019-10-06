@@ -7,15 +7,15 @@ import (
 
 type userMapRepository struct {
 	idMap       map[models.IdType]*models.UserIdentity
-	usernameMap map[models.UsernameType]*models.UserIdentity
-	emailMap    map[models.EmailType]*models.UserIdentity
+	usernameMap map[string]*models.UserIdentity
+	emailMap    map[string]*models.UserIdentity
 }
 
 func NewMapUserRepository() *userMapRepository {
 	return &userMapRepository{
 		idMap:       make(map[models.IdType]*models.UserIdentity),
-		usernameMap: make(map[models.UsernameType]*models.UserIdentity),
-		emailMap:    make(map[models.EmailType]*models.UserIdentity),
+		usernameMap: make(map[string]*models.UserIdentity),
+		emailMap:    make(map[string]*models.UserIdentity),
 	}
 }
 
@@ -23,10 +23,10 @@ func (m *userMapRepository) GetById(id models.IdType) (*models.UserIdentity, err
 	return m.idMap[id], nil
 }
 
-func (m *userMapRepository) GetByLoginCode(loginCode models.UsernameType) (*models.UserIdentity, error) {
-	pUser := m.usernameMap[models.UsernameType(loginCode)]
+func (m *userMapRepository) GetByLoginCode(loginCode string) (*models.UserIdentity, error) {
+	pUser := m.usernameMap[loginCode]
 	if pUser == nil {
-		return nil, errors.New("Could not find user with loginCode: " + string(loginCode))
+		return nil, errors.New("Could not find user with loginCode: " + loginCode)
 	}
 	return pUser, nil
 }
