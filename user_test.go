@@ -1,22 +1,12 @@
 package user
 
 import (
-	"github.com/google/uuid"
 	"testing"
 )
 
 func getUser() *UserIdentity {
-	pUser := &UserIdentity{
-		user: UserType{
-			id:       IdType(uuid.New()),
-			username: "john.doe",
-			email:    "john.doe@tester.com",
-			name: NameType{
-				first: "John",
-				last:  "Doe",
-			},
-		},
-	}
+	pUser := NewUser(UsernameType("john.doe"))
+	pUser.SetEmail("john.doe@tester.com")
 	return pUser
 }
 

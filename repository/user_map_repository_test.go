@@ -2,7 +2,6 @@ package repository
 
 import (
 	models "github.com/ernstvorsteveld/go-user"
-	"github.com/google/uuid"
 	"reflect"
 	"testing"
 )
@@ -10,15 +9,7 @@ import (
 func Test_create_and_retrieve_user(t *testing.T) {
 	userRepository := NewMapUserRepository()
 
-	pUser := &models.UserIdentity{
-		user: models.UserType{
-			id: models.IdType(uuid.New()),
-			name: models.NameType{
-				first: "John",
-				last:  "Doe",
-			},
-		},
-	}
+	pUser := models.NewUser("john.doe")
 	uuid, error := userRepository.Create(pUser)
 	if error != nil {
 		t.Errorf("Error returned by user repository while creating a user.")

@@ -33,7 +33,6 @@ type LastLoginType struct {
 }
 
 type UserType struct {
-	id        IdType
 	username  UsernameType
 	name      NameType
 	email     EmailType
@@ -44,5 +43,6 @@ type UserType struct {
 }
 
 type UserIdentity struct {
-	user UserType
+	id   IdType   `json:"id"`
+	user UserType `json:"user"`
 }
