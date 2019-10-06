@@ -1,2 +1,4 @@
 .git
 pkg
+coverage.html
+coverage.out

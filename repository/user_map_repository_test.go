@@ -27,4 +27,9 @@ func Test_create_and_retrieve_user(t *testing.T) {
 	if !same {
 		t.Errorf("The retrieven user differs from the created user.")
 	}
+
+	pUsernameUser, error := userRepository.GetByLoginCode(models.UsernameType("john.doe"))
+	if pUsernameUser != pUser {
+		t.Errorf("Users are not the same.")
+	}
 }
