@@ -50,6 +50,10 @@ type UserIdentity struct {
 	User UserType
 }
 
-func getUsername(u *UserIdentity) UsernameType {
+func GetUsername(u *UserIdentity) UsernameType {
 	return u.User.Username
+}
+
+func GetEmail(u *UserIdentity) EmailType {
+	return u.User.Email
 }
