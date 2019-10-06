@@ -1,59 +1,31 @@
 package user
 
 import (
-	password "github.com/ernstvorsteveld/go-password"
 	"github.com/google/uuid"
-	"time"
 )
 
-type EmailType string
+type User interface {
+	GetUsername() UsernameType
+	GetEmail() EmailType
 
-type LoginCodeType int
-
-type NameType struct {
-	First  string
-	Middle string
-	Last   string
+	SetUserId() IdType
+	GetUserId() IdType
 }
 
-const (
-	UserName LoginCodeType = iota
-	Email
-)
-
-type LoginType struct {
-	loginType LoginCodeType
-	value     string
+func (u *UserIdentity) GetUsername() UsernameType {
+	return u.user.username
 }
 
-type LastLoginType struct {
-	when time.Time
-	what LoginCodeType
+func (u *UserIdentity) GetEmail() EmailType {
+	return u.user.email
 }
 
-type UsernameType string
-
-type UserType struct {
-	Id        uuid.UUID
-	Username  UsernameType
-	Name      NameType
-	Email     EmailType
-	logins    []LoginType
-	created   time.Time
-	lastLogin LastLoginType
-	password  password.Password
+func (u *UserIdentity) SetUserId() IdType {
+	var id IdType = IdType(uuid.New())
+	u.user.id = id
+	return id
 }
 
-type IdType uuid.UUID
-
-type UserIdentity struct {
-	User UserType
-}
-
-func GetUsername(u *UserIdentity) UsernameType {
-	return u.User.Username
-}
-
-func GetEmail(u *UserIdentity) EmailType {
-	return u.User.Email
+func (u *UserIdentity) GetUserId() IdType {
+	return u.user.id
 }
