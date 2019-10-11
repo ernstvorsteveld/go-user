@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func getUser() *UserIdentity {
+func getUser() UserIdentity {
 	pUser := NewUser("john.doe")
 	pUser.SetEmail("john.doe@tester.com")
 	return pUser

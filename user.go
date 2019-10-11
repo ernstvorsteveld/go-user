@@ -14,8 +14,8 @@ type User interface {
 	GetUserId() IdType
 }
 
-func NewUser(username string) *UserIdentity {
-	pUser := &UserIdentity{
+func NewUser(username string) UserIdentity {
+	pUser := UserIdentity{
 		user: UserType{
 			username: username,
 		},
@@ -47,4 +47,8 @@ func (u *UserIdentity) SetUserId() IdType {
 
 func (u *UserIdentity) GetUserId() IdType {
 	return u.id
+}
+
+func (u *UserIdentity) GetUser() UserType {
+	return u.user
 }
