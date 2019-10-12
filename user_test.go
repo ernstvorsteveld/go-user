@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func getUser() UserIdentity {
-	pUser := NewUser("john.doe")
+func getUser() User {
+	var pUser User = NewUser("john.doe")
 	pUser.SetEmail("john.doe@tester.com")
 	return pUser
 }

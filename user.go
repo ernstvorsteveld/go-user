@@ -14,13 +14,14 @@ type User interface {
 	GetUserId() IdType
 }
 
-func NewUser(username string) UserIdentity {
-	pUser := UserIdentity{
+func NewUser(username string) User {
+	var userIdentity UserIdentity = UserIdentity{
 		user: UserType{
 			username: username,
 		},
 	}
-	return pUser
+	// var pUser User = &userIdentity
+	return &userIdentity
 }
 
 func (u *UserIdentity) GetUsername() string {

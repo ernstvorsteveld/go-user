@@ -5,9 +5,9 @@ import (
 )
 
 type UserRepository interface {
-	GetById(id models.IdType) (*models.UserIdentity, error)
-	GetByLoginCode(loginCode string) (*models.UserIdentity, error)
-	Update(u models.UserIdentity) (*models.UserIdentity, error)
-	Create(u models.UserIdentity) (*models.IdType, error)
+	GetById(id models.IdType) (models.User, error)
+	GetByLoginCode(loginCode string) (*models.User, error)
+	Update(u models.User) (*models.User, error)
+	Create(u models.User) (*models.IdType, error)
 	Delete(id models.IdType) (bool, error)
 }
