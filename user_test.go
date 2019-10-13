@@ -30,9 +30,9 @@ func Test_should_get_username_from_user(t *testing.T) {
 }
 
 func Test_should_get_email_from_user(t *testing.T) {
-	pUser := getUser()
+	user := getUser()
 	var expected string = "john.doe@tester.com"
-	email := pUser.GetEmail()
+	email := user.GetEmail()
 
 	if email == "" {
 		t.Errorf("The email is empty")
@@ -43,21 +43,39 @@ func Test_should_get_email_from_user(t *testing.T) {
 }
 
 func Test_should_set_userid(t *testing.T) {
-	pUser := getUser()
-	initId := pUser.InitId()
+	user := getUser()
+	initId := user.InitId()
 
-	if pUser.GetUserId() != initId {
-		t.Errorf("The GetUserId '%s' is not equals to the id value set '%s'.", pUser.GetUserId(), initId)
+	if user.GetUserId() != initId {
+		t.Errorf("The GetUserId '%s' is not equals to the id value set '%s'.", user.GetUserId(), initId)
 	}
 
 	newId := IdType(uuid.New())
-	pUser.SetUserId(newId)
+	user.SetUserId(newId)
 
-	changedId := pUser.GetUserId()
-	if &changedId == nil {
-		t.Errorf("Could not create a Id")
-	}
+	changedId := user.GetUserId()
 	if changedId != newId {
 		t.Errorf("Could not set the id on the user")
 	}
+}
+
+func Test_methods_on_user(t *testing.T) {
+	user := getUser()
+
+	expectedEmail := "test.email@host.com"
+	user.SetEmail(expectedEmail)
+	foundEmail := user.GetEmail()
+
+	if foundEmail != expectedEmail {
+		t.Errorf("The expected email %s is not equals to the found email %s", expectedEmail, foundEmail)
+	}
+
+	expectedUsername := "test.username"
+	user.SetUsername(expectedUsername)
+	foundUsername := user.GetUsername()
+
+	if foundUsername != expectedUsername {
+		t.Errorf("The expected username %s is not equals to the found username %s.", expectedUsername, foundUsername)
+	}
+
 }
