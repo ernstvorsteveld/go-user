@@ -14,3 +14,33 @@
 * User storage;
 * Crud opertions on users;
 * Password management;
+
+The representation of a user:
+
+[source,golang]
+----
+type User interface {
+	GetUsername() *string
+	SetUsername(username string)
+	GetEmail() *string
+	SetEmail(email string)
+
+	InitId() IdType
+	SetUserId(id IdType) IdType
+	GetUserId() *IdType
+}
+----
+
+
+The representation of a repository:
+
+[source,golang]
+----
+type UserRepository interface {
+	GetById(id models.IdType) (models.User, error)
+	GetByLoginCode(loginCode string) (*models.User, error)
+	Update(u models.User) (*models.User, error)
+	Create(u models.User) (*models.IdType, error)
+	Delete(id *models.IdType) (bool, error)
+}
+----
