@@ -8,81 +8,38 @@ import (
 
 func Test_create_and_retrieve_user(t *testing.T) {
 	userRepository := NewMapUserRepository()
-	userMap := createUsers(userRepository, t)
+	userMap := createUsers(userRepository)
 
-	pJohn := userMap["john.doe"]
-	pUserFromGet, errorFromGet := userRepository.GetById(pJohn.GetUserId())
+	john := userMap[JohnUsername]
+	userFromGet, errorFromGet := userRepository.GetById(john.GetUserId())
 	if errorFromGet != nil {
 		t.Errorf("Error returned by user repository while getting a user.")
 	}
-	if "john.doe" != pUserFromGet.GetUsername() {
-		t.Errorf("The usernames are different, expected 'john.doe', but got %s.", pJohn.GetUsername())
+	if JohnUsername != userFromGet.GetUsername() {
+		t.Errorf("The usernames are different, expected %s, but got %s.", JohnUsername, userFromGet.GetUsername())
 	}
 
-	same := reflect.DeepEqual(userMap["john.doe"], pUserFromGet)
+	same := reflect.DeepEqual(john, userFromGet)
 	if !same {
-		t.Errorf("The user retrieved %s differs from the created user %s.", pJohn.GetUsername(), pUserFromGet.GetUsername())
+		t.Errorf("The user retrieved %s differs from the created user %s.", john.GetUsername(), userFromGet.GetUsername())
 	}
 
-	_, error := userRepository.GetByLoginCode("john.doe")
+	_, error := userRepository.GetByLoginCode(JohnUsername)
 	if error != nil {
 		t.Errorf("Error occurred: %s", error)
 	}
 }
 
-func createUsers(userRepository UserRepository, t *testing.T) map[string]models.User {
-	userMap := make(map[string]models.User)
-
-	username := "john.doe"
-	user := models.NewUser(username)
-	uuid, error := userRepository.Create(user)
-	validateUserCreate(error, uuid, t)
-	userMap[username] = user
-	if userMap[username].GetUsername() != username {
-		t.Errorf("1.Username is incoorect: %s, expected %s.", userMap[username].GetUsername(), username)
-	}
-
-	username = "sander.kuiper"
-	user = models.NewUser(username)
-	uuid, error = userRepository.Create(user)
-	validateUserCreate(error, uuid, t)
-	userMap[username] = user
-	if userMap[username].GetUsername() != username {
-		t.Errorf("2.Username is incoorect: %s, expected %s.", userMap[username].GetUsername(), username)
-	}
-
-	username = "annelies.gerritsen"
-	user = models.NewUser(username)
-	uuid, error = userRepository.Create(user)
-	validateUserCreate(error, uuid, t)
-	userMap[username] = user
-	if userMap[username].GetUsername() != username {
-		t.Errorf("3.Username is incoorect: %s, expected %s.", userMap[username].GetUsername(), username)
-	}
-
-	return userMap
-}
-
-func validateUserCreate(error error, id models.IdType, t *testing.T) {
-	if error != nil {
-		t.Errorf("Error returned by user repository while creating a user.")
-	}
-	if len(id) <= 0 {
-		t.Errorf("When Creating a user in the repository, expected a UUID value.")
-	}
-
-}
-
 func Test_create_update_and_delete_user(t *testing.T) {
 	userRepository := NewMapUserRepository()
-	userMap := createUsers(userRepository, t)
+	userMap := createUsers(userRepository)
 
 	expected := "username-update"
 	user := models.NewUser(expected)
-	id := userMap["john.doe"].GetUserId()
+	id := userMap[JohnUsername].GetUserId()
 
-	if &id == nil {
-		t.Errorf("Is nil")
+	if len(id) <= 0 {
+		t.Errorf("Id is nil.")
 	}
 	user.SetUserId(id)
 	userRepository.Update(user)
