@@ -2,11 +2,8 @@ package user
 
 import (
 	password "github.com/ernstvorsteveld/go-password"
-	"github.com/google/uuid"
 	"time"
 )
-
-type IdType uuid.UUID
 
 const (
 	UserName int = iota
