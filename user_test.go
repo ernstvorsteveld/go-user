@@ -29,19 +29,6 @@ func Test_should_get_username_from_user(t *testing.T) {
 	}
 }
 
-func Test_should_get_email_from_user(t *testing.T) {
-	user := getUser()
-	var expected string = "john.doe@tester.com"
-	email := user.GetEmail()
-
-	if email == "" {
-		t.Errorf("The email is empty")
-	}
-	if expected != email {
-		t.Errorf("The email address returned is %s, while expected 'john.doe@tester.com'", email)
-	}
-}
-
 func Test_should_set_userid(t *testing.T) {
 	user := getUser()
 	initId := user.InitId()
