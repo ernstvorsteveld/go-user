@@ -5,14 +5,14 @@ import (
 )
 
 type User interface {
-	GetUsername() *string
+	GetUsername() string
 	SetUsername(username string)
-	GetEmail() *string
+	GetEmail() string
 	SetEmail(email string)
 
 	InitId() IdType
 	SetUserId(id IdType) IdType
-	GetUserId() *IdType
+	GetUserId() IdType
 }
 
 func NewUser(username string) User {
@@ -25,16 +25,16 @@ func NewUser(username string) User {
 	return &userIdentity
 }
 
-func (u *UserIdentity) GetUsername() *string {
-	return &u.user.username
+func (u *UserIdentity) GetUsername() string {
+	return u.user.username
 }
 
 func (u *UserIdentity) SetUsername(username string) {
 	u.user.username = username
 }
 
-func (u *UserIdentity) GetEmail() *string {
-	return &u.user.email
+func (u *UserIdentity) GetEmail() string {
+	return u.user.email
 }
 
 func (u *UserIdentity) SetEmail(email string) {
@@ -51,10 +51,10 @@ func (u *UserIdentity) SetUserId(id IdType) IdType {
 	return id
 }
 
-func (u *UserIdentity) GetUserId() *IdType {
-	return &u.id
+func (u *UserIdentity) GetUserId() IdType {
+	return u.id
 }
 
-func (u *UserIdentity) GetUser() *UserType {
-	return &u.user
+func (u *UserIdentity) GetUser() UserType {
+	return u.user
 }
