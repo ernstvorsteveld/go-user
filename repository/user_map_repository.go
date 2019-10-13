@@ -29,24 +29,35 @@ func (m *userMapRepository) GetById(id models.IdType) (models.User, error) {
 }
 
 func (m *userMapRepository) GetByLoginCode(loginCode string) (*models.User, error) {
-	pUser := m.usernameMap[loginCode]
-	if &pUser == nil {
+	user := m.usernameMap[loginCode]
+	if &user == nil {
 		return nil, errors.New(fmt.Sprintf("Could not find user with loginCode %s.", loginCode))
 	}
-	return &pUser, nil
+	return &user, nil
 }
 
-func (m *userMapRepository) Update(userIdenity models.User) (*models.User, error) {
-	return nil, nil
+func (m *userMapRepository) Update(u models.User) (*models.User, error) {
+	pId := u.GetUserId()
+	if pId == nil {
+		return nil, errors.New(fmt.Sprintf("Cannot update a user with id == nil."))
+	}
+	user := m.idMap[*pId]
+	if &user == nil {
+		return nil, errors.New(fmt.Sprintf("Could not find user to updete with id %s.", u.GetUserId()))
+	}
+	m.idMap[*pId] = u
+	m.usernameMap[*u.GetUsername()] = u
+
+	return &user, nil
 }
 
 func (m *userMapRepository) Create(u models.User) (*models.IdType, error) {
-	id := u.SetUserId()
+	id := u.InitId()
 	m.idMap[id] = u
-	m.usernameMap[u.GetUsername()] = u
+	m.usernameMap[*u.GetUsername()] = u
 	return &id, nil
 }
 
-func (m *userMapRepository) Delete(id models.IdType) (bool, error) {
+func (m *userMapRepository) Delete(id *models.IdType) (bool, error) {
 	return false, nil
 }
