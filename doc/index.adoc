@@ -31,7 +31,6 @@ type User interface {
 }
 ----
 
-
 The representation of a repository:
 
 [source,golang]
